@@ -91,9 +91,9 @@ export class Animations {
     scene.anims.create({
       key: 'rotate',
       frames: scene.anims.generateFrameNumbers('coin', {
-        frames: [0, 1, 2, 1],
+        frames: [0, 1, 2, 3, 4, 5, 6, 7],
       }),
-      frameRate: 6,
+      frameRate: 8,
       repeat: -1,
     });
   }

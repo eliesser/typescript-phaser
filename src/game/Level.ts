@@ -144,6 +144,7 @@ export class Level {
   spawnCoin(coin: any) {
     const _coin = this.scene.add.sprite(coin.x, coin.y, 'coin');
     _coin.setOrigin(0.5, 0.5);
+    _coin.setScale(1.5);
     _coin.anims.play(this.animations.rotate, true);
     return _coin;
   }

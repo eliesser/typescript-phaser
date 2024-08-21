@@ -52,10 +52,14 @@ export class Boot extends Phaser.Scene {
         frameHeight: 80,
       }
     );
-    this.load.spritesheet('coin', 'src/assets/images/coin_animated.png', {
-      frameWidth: 22,
-      frameHeight: 22,
-    });
+    this.load.spritesheet(
+      'coin',
+      'src/assets/rocky-roads/objects/coin_gold.png',
+      {
+        frameWidth: 16,
+        frameHeight: 16,
+      }
+    );
     this.load.spritesheet(
       'spider',
       'src/assets/rocky-roads/enemies/bear_brown.png',
