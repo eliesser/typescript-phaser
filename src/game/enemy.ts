@@ -1,4 +1,4 @@
-import { Play } from './Play';
+import { Play } from './play';
 
 const SPIDER_SPEED = 100;
 const enum Directions {
@@ -6,15 +6,15 @@ const enum Directions {
   right = 'right',
 }
 
-export class Spider extends Phaser.Physics.Arcade.Sprite {
+export class Enemy extends Phaser.Physics.Arcade.Sprite {
   direction = Directions.right;
   dead = false;
   animations: any;
 
   constructor(scene: Play, x: any, y: any) {
-    super(scene, x, y, 'spider');
+    super(scene, x, y, 'enemy');
 
-    this.animations = scene.getAnimations('spider');
+    this.animations = scene.getAnimations('enemy');
 
     this.setOrigin(0.5, 0.5);
   }

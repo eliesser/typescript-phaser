@@ -1,7 +1,7 @@
-import { Level } from './Level';
-import { Hero } from './Hero';
-import { Spider } from './Spider';
-import { Animations } from './Animations';
+import { Level } from './level';
+import { Hero } from './hero';
+import { Enemy } from './enemy';
+import { Animations } from './animations';
 
 const LEVEL_COUNT = 2;
 
@@ -13,7 +13,7 @@ export class Play extends Phaser.Scene {
   door: any;
   keyIcon: any;
   coinIcon: any;
-  spiders!: Spider[];
+  enemies!: Enemy[];
 
   groups!: { [key: string]: Phaser.Physics.Arcade.Group };
 
@@ -39,7 +39,7 @@ export class Play extends Phaser.Scene {
 
   update() {
     this.hero.update();
-    this.spiders.forEach((spider) => spider.update());
+    this.enemies.forEach((enemy) => enemy.update());
 
     const frame = this.hasKey ? 1 : 0;
     this.keyIcon.setFrame(frame);
@@ -60,7 +60,7 @@ export class Play extends Phaser.Scene {
       'keyIcon',
       'coinIcon',
       'door',
-      'spiders',
+      'enemies',
       'groups',
     ];
 
@@ -74,8 +74,8 @@ export class Play extends Phaser.Scene {
 
   initPhysics() {
     this.physics.add.collider(this.hero, this.level.platforms);
-    this.physics.add.collider(this.groups.spiders, this.level.platforms);
-    this.physics.add.collider(this.groups.spiders, this.groups.enemyWalls);
+    this.physics.add.collider(this.groups.enemies, this.level.platforms);
+    this.physics.add.collider(this.groups.enemies, this.groups.enemyWalls);
 
     this.physics.add.overlap(
       this.hero,
@@ -87,7 +87,7 @@ export class Play extends Phaser.Scene {
 
     this.physics.add.overlap(
       this.hero,
-      this.groups.spiders,
+      this.groups.enemies,
       this.doBattle,
       undefined,
       this
@@ -123,10 +123,10 @@ export class Play extends Phaser.Scene {
     return this.animations.getAnimations(key);
   }
 
-  doBattle(hero: any, spider: any) {
-    if (spider.body.touching.up && hero.body.touching.down) {
+  doBattle(hero: any, enemy: any) {
+    if (enemy.body.touching.up && hero.body.touching.down) {
       this.sound.play('sfx:stomp');
-      spider.die();
+      enemy.die();
     } else {
       this.gameOver();
     }

@@ -1,6 +1,6 @@
-import { Hero } from './Hero';
-import { Play } from './Play';
-import { Spider } from './Spider';
+import { Hero } from './hero';
+import { Play } from './play';
+import { Enemy } from './enemy';
 
 export class Level {
   hero!: Hero;
@@ -9,7 +9,7 @@ export class Level {
   key: any;
   door: any;
   animations: any;
-  spiders: Spider[] = [];
+  enemies: Enemy[] = [];
 
   platforms: Phaser.Physics.Arcade.StaticGroup;
   groups: { [key: string]: Phaser.Physics.Arcade.Group };
@@ -22,7 +22,7 @@ export class Level {
       hud: this.scene.physics.add.group({ allowGravity: false }),
       coins: this.scene.physics.add.group({ allowGravity: false }),
       players: this.scene.physics.add.group(),
-      spiders: this.scene.physics.add.group(),
+      enemies: this.scene.physics.add.group(),
       enemyWalls: this.scene.physics.add.group({
         allowGravity: false,
         immovable: true,
@@ -37,7 +37,7 @@ export class Level {
     this.spawnEnemyWalls(data.platforms);
     this.spawnHero(data.hero);
     this.spawnCoins(data.coins);
-    this.spawnSpiders(data.spiders);
+    this.spawnEnemies(data.enemies);
     this.spawnKey(data.key);
     this.spawnHUD();
   }
@@ -52,6 +52,7 @@ export class Level {
   spawnKey(key: any) {
     this.key = this.groups.bgDecoration.create(key.x, key.y, 'key');
     this.key.setOrigin(0.5, 0.5);
+    this.key.setScale(2);
     this.key.body.allowGravity = false;
     this.key.y -= 3;
 
@@ -121,16 +122,16 @@ export class Level {
     this.hero.setScale(1.7);
   }
 
-  spawnSpiders(spiders: any) {
-    spiders.forEach((spider: any) => {
-      const _spider = new Spider(this.scene, spider.x, spider.y);
-      this.spiders = [...this.spiders, _spider];
-      this.groups.spiders.add(_spider, true);
+  spawnEnemies(enemies: any) {
+    enemies.forEach((enemy: any) => {
+      const _spider = new Enemy(this.scene, enemy.x, enemy.y);
+      this.enemies = [...this.enemies, _spider];
+      this.groups.enemies.add(_spider, true);
     });
 
-    this.spiders.forEach((spider: any) => {
-      spider.setBodySize(30, 20);
-      spider.setOffset(0, 13);
+    this.enemies.forEach((enemy: any) => {
+      enemy.setBodySize(30, 20);
+      enemy.setOffset(0, 13);
     });
   }
 

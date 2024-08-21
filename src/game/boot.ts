@@ -22,8 +22,11 @@ export class Boot extends Phaser.Scene {
     this.load.image('grass:4x1', 'src/assets/images/grass_4x1.png');
     this.load.image('grass:2x1', 'src/assets/images/grass_2x1.png');
     this.load.image('grass:1x1', 'src/assets/images/grass_1x1.png');
-    this.load.image('key', 'src/assets/images/key.png');
 
+    this.load.spritesheet('key', 'src/assets/rocky-roads/objects/key.png', {
+      frameWidth: 16,
+      frameHeight: 16,
+    });
     this.load.spritesheet('decoration', 'src/assets/images/decor.png', {
       frameWidth: 42,
       frameHeight: 42,
@@ -61,7 +64,7 @@ export class Boot extends Phaser.Scene {
       }
     );
     this.load.spritesheet(
-      'spider',
+      'enemy',
       'src/assets/rocky-roads/enemies/bear_brown.png',
       {
         frameWidth: 32,

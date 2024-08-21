@@ -1,5 +1,5 @@
-import { Boot } from './Boot';
-import { Play } from './Play';
+import { Boot } from './boot';
+import { Play } from './play';
 
 export var gameConfig = {
   type: Phaser.AUTO,

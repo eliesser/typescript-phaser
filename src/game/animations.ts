@@ -1,8 +1,8 @@
 export class Animations {
   map = {
-    spider: {
+    enemy: {
       crawl: 'crawl',
-      dying: 'dyingSpider',
+      dying: 'dyingEnemy',
     },
     hero: {
       stop: 'stop',
@@ -13,6 +13,7 @@ export class Animations {
     },
     elements: {
       rotate: 'rotate',
+      ilumine: 'ilumine',
     },
   };
 
@@ -20,14 +21,14 @@ export class Animations {
     this.initAnimations(scene);
   }
 
-  getAnimations(key: 'spider' | 'hero' | 'elements') {
+  getAnimations(key: 'enemy' | 'hero' | 'elements') {
     return this.map[key];
   }
 
   initAnimations(scene: Phaser.Scene) {
     scene.anims.create({
       key: 'crawl',
-      frames: scene.anims.generateFrameNumbers('spider', {
+      frames: scene.anims.generateFrameNumbers('enemy', {
         frames: [0, 1, 5, 6, 7],
       }),
       frameRate: 8,
@@ -35,8 +36,8 @@ export class Animations {
     });
 
     scene.anims.create({
-      key: 'dyingSpider',
-      frames: scene.anims.generateFrameNumbers('spider', {
+      key: 'dyingEnemy',
+      frames: scene.anims.generateFrameNumbers('enemy', {
         frames: [6, 2, 2, 6, 6, 6, 2, 2, 6, 6, 6, 6],
       }),
       frameRate: 1,
@@ -92,6 +93,15 @@ export class Animations {
       key: 'rotate',
       frames: scene.anims.generateFrameNumbers('coin', {
         frames: [0, 1, 2, 3, 4, 5, 6, 7],
+      }),
+      frameRate: 8,
+      repeat: -1,
+    });
+
+    scene.anims.create({
+      key: 'ilumine',
+      frames: scene.anims.generateFrameNumbers('key', {
+        frames: [0, 1, 2, 3, 4],
       }),
       frameRate: 8,
       repeat: -1,

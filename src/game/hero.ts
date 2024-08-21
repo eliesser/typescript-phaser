@@ -1,4 +1,4 @@
-import { Play } from './Play';
+import { Play } from './play';
 
 export class Hero extends Phaser.Physics.Arcade.Sprite {
   keys: Phaser.Input.Keyboard.CursorKeys;
