@@ -84,9 +84,11 @@ export class Animations {
 
     scene.anims.create({
       key: 'dyingHero',
-      frames: scene.anims.generateFrameNumbers('hero', { start: 5, end: 6 }),
-      frameRate: 12,
-      repeat: 4,
+      frames: scene.anims.generateFrameNumbers('hero-die', {
+        frames: [6, 5, 4, 3, 1, 2, 1],
+      }),
+      frameRate: 6,
+      repeat: 0,
     });
 
     scene.anims.create({

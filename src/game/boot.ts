@@ -27,10 +27,12 @@ export class Boot extends Phaser.Scene {
       frameWidth: 16,
       frameHeight: 16,
     });
+
     this.load.spritesheet('decoration', 'src/assets/images/decor.png', {
       frameWidth: 42,
       frameHeight: 42,
     });
+
     this.load.spritesheet(
       'hero',
       'src/assets/red-hood-pixel-character/idle.png',
@@ -39,6 +41,7 @@ export class Boot extends Phaser.Scene {
         frameHeight: 80,
       }
     );
+
     this.load.spritesheet(
       'hero-run',
       'src/assets/red-hood-pixel-character/run.png',
@@ -47,6 +50,7 @@ export class Boot extends Phaser.Scene {
         frameHeight: 80,
       }
     );
+
     this.load.spritesheet(
       'hero-jump',
       'src/assets/red-hood-pixel-character/jump.png',
@@ -55,6 +59,16 @@ export class Boot extends Phaser.Scene {
         frameHeight: 80,
       }
     );
+
+    this.load.spritesheet(
+      'hero-die',
+      'src/assets/red-hood-pixel-character/hurt.png',
+      {
+        frameWidth: 80,
+        frameHeight: 80,
+      }
+    );
+
     this.load.spritesheet(
       'coin',
       'src/assets/rocky-roads/objects/coin_gold.png',
@@ -63,6 +77,7 @@ export class Boot extends Phaser.Scene {
         frameHeight: 16,
       }
     );
+
     this.load.spritesheet(
       'enemy',
       'src/assets/rocky-roads/enemies/bear_brown.png',
@@ -71,10 +86,12 @@ export class Boot extends Phaser.Scene {
         frameHeight: 32,
       }
     );
+
     this.load.spritesheet('door', 'src/assets/images/door.png', {
       frameWidth: 42,
       frameHeight: 66,
     });
+
     this.load.spritesheet('icon:key', 'src/assets/images/key_icon.png', {
       frameWidth: 34,
       frameHeight: 30,

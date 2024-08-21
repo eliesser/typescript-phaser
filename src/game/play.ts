@@ -172,11 +172,13 @@ export class Play extends Phaser.Scene {
   }
 
   gameOver() {
-    this.reset();
     this.hero.die();
-    this.cameras.main.fade(1000);
-    this.cameras.main.on('camerafadeoutcomplete', () => {
-      this.scene.restart();
-    });
+    setTimeout(() => {
+      this.cameras.main.fade(500);
+      this.cameras.main.on('camerafadeoutcomplete', () => {
+        this.scene.restart();
+      });
+    }, 1000);
+    this.reset();
   }
 }
