@@ -42,6 +42,7 @@ export class Spider extends Phaser.Physics.Arcade.Sprite {
 
   crawl(direction: any) {
     const velocity = this.getVelocity(direction);
+    velocity < 0 ? (this.flipX = true) : (this.flipX = false);
     this.setVelocityX(velocity);
     this.anims.play(this.animations.crawl, true);
   }
