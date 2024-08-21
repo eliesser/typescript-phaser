@@ -56,10 +56,14 @@ export class Boot extends Phaser.Scene {
       frameWidth: 22,
       frameHeight: 22,
     });
-    this.load.spritesheet('spider', 'src/assets/images/spider.png', {
-      frameWidth: 42,
-      frameHeight: 32,
-    });
+    this.load.spritesheet(
+      'spider',
+      'src/assets/rocky-roads/enemies/bear_brown.png',
+      {
+        frameWidth: 32,
+        frameHeight: 32,
+      }
+    );
     this.load.spritesheet('door', 'src/assets/images/door.png', {
       frameWidth: 42,
       frameHeight: 66,

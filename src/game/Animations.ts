@@ -28,7 +28,7 @@ export class Animations {
     scene.anims.create({
       key: 'crawl',
       frames: scene.anims.generateFrameNumbers('spider', {
-        frames: [0, 1, 2],
+        frames: [0, 1, 5, 6, 7],
       }),
       frameRate: 8,
       repeat: -1,
@@ -37,9 +37,9 @@ export class Animations {
     scene.anims.create({
       key: 'dyingSpider',
       frames: scene.anims.generateFrameNumbers('spider', {
-        frames: [0, 4, 0, 4, 0, 4, 3, 3, 3, 3, 3, 3],
+        frames: [6, 2, 2, 6, 6, 6, 2, 2, 6, 6, 6, 6],
       }),
-      frameRate: 12,
+      frameRate: 1,
       repeat: 0,
       hideOnComplete: true,
     });

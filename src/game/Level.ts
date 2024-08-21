@@ -127,6 +127,11 @@ export class Level {
       this.spiders = [...this.spiders, _spider];
       this.groups.spiders.add(_spider, true);
     });
+
+    this.spiders.forEach((spider: any) => {
+      spider.setBodySize(30, 20);
+      spider.setOffset(0, 13);
+    });
   }
 
   spawnCoins(coins: any) {
