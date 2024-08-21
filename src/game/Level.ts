@@ -30,7 +30,7 @@ export class Level {
     };
   }
 
-  loadLevel(data) {
+  loadLevel(data: any) {
     this.spawnBG();
     this.spawnDoor(data.door);
     this.spawnPlatforms(data.platforms);
@@ -42,14 +42,14 @@ export class Level {
     this.spawnHUD();
   }
 
-  spawnDoor(door) {
+  spawnDoor(door: any) {
     this.door = this.groups.bgDecoration.create(door.x, door.y, 'door');
     this.door.setOrigin(0.5, 1);
     this.door.body.allowGravity = false;
     this.addPhysics(this.door);
   }
 
-  spawnKey(key) {
+  spawnKey(key: any) {
     this.key = this.groups.bgDecoration.create(key.x, key.y, 'key');
     this.key.setOrigin(0.5, 0.5);
     this.key.body.allowGravity = false;
@@ -108,45 +108,49 @@ export class Level {
     );
   }
 
-  spawnHero(hero) {
+  spawnHero(hero: any) {
     this.hero = new Hero(this.scene, hero.x, hero.y);
+
     this.groups.players.add(this.hero, true);
 
     // Now that hero has been added to the scene...
-    this.hero.setBounce(0.3);
+    this.hero.setBounce(0);
     this.hero.setCollideWorldBounds(true);
+    this.hero.setBodySize(20, 40);
+    this.hero.setOffset(20, 20);
+    this.hero.setScale(1.7);
   }
 
-  spawnSpiders(spiders) {
-    spiders.forEach((spider) => {
+  spawnSpiders(spiders: any) {
+    spiders.forEach((spider: any) => {
       const _spider = new Spider(this.scene, spider.x, spider.y);
       this.spiders = [...this.spiders, _spider];
       this.groups.spiders.add(_spider, true);
     });
   }
 
-  spawnCoins(coins) {
-    coins.forEach((coin) => {
+  spawnCoins(coins: any) {
+    coins.forEach((coin: any) => {
       const _coin = this.spawnCoin(coin);
       this.groups.coins.add(_coin, true);
     });
   }
 
-  spawnCoin(coin) {
+  spawnCoin(coin: any) {
     const _coin = this.scene.add.sprite(coin.x, coin.y, 'coin');
     _coin.setOrigin(0.5, 0.5);
     _coin.anims.play(this.animations.rotate, true);
     return _coin;
   }
 
-  spawnPlatforms(platforms) {
-    platforms.forEach((platform) => {
+  spawnPlatforms(platforms: any) {
+    platforms.forEach((platform: any) => {
       const _platform = this.spawnPlatform(platform);
       this.platforms.add(_platform);
     });
   }
 
-  spawnPlatform(platform) {
+  spawnPlatform(platform: any) {
     const _platform = this.scene.add.sprite(
       platform.x,
       platform.y,
@@ -156,18 +160,14 @@ export class Level {
     return _platform;
   }
 
-  spawnEnemyWalls(platforms) {
-    platforms.forEach((platform) => {
-      const left = this.spawnEnemyWall(platform.x, platform.y, 'left');
-      const right = this.spawnEnemyWall(
-        platform.x + platform.width,
-        platform.y,
-        'right'
-      );
+  spawnEnemyWalls(platforms: any) {
+    platforms.forEach((platform: any) => {
+      this.spawnEnemyWall(platform.x, platform.y, 'left');
+      this.spawnEnemyWall(platform.x + platform.width, platform.y, 'right');
     });
   }
 
-  spawnEnemyWall(x, y, side) {
+  spawnEnemyWall(x: any, y: any, side: any) {
     const wall = this.groups.enemyWalls.create(x, y, 'invisible-wall');
     wall.setOrigin(side === 'left' ? 1 : 0, 1);
     wall.visible = false;
@@ -178,7 +178,7 @@ export class Level {
     bg.setOrigin(0, 0);
   }
 
-  addPhysics(gameObject, isStatic?) {
+  addPhysics(gameObject: any, isStatic?: any) {
     this.scene.physics.add.existing(gameObject, isStatic);
   }
 }

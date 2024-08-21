@@ -9,54 +9,75 @@ export class Boot extends Phaser.Scene {
   preload() {
     console.log('Boot.preload()');
 
-    this.load.setBaseURL('src/assets/');
-
     this.load.json('level:1', level1);
     this.load.json('level:2', level2);
 
-    this.load.image('font:numbers', 'images/numbers.png');
-    this.load.image('icon:coin', 'images/coin_icon.png');
-    this.load.image('background', 'images/background.png');
-    this.load.image('invisible-wall', 'images/invisible_wall.png');
-    this.load.image('ground', 'images/ground.png');
-    this.load.image('grass:8x1', 'images/grass_8x1.png');
-    this.load.image('grass:6x1', 'images/grass_6x1.png');
-    this.load.image('grass:4x1', 'images/grass_4x1.png');
-    this.load.image('grass:2x1', 'images/grass_2x1.png');
-    this.load.image('grass:1x1', 'images/grass_1x1.png');
-    this.load.image('key', 'images/key.png');
+    this.load.image('font:numbers', 'src/assets/images/numbers.png');
+    this.load.image('icon:coin', 'src/assets/images/coin_icon.png');
+    this.load.image('background', 'src/assets/images/background.png');
+    this.load.image('invisible-wall', 'src/assets/images/invisible_wall.png');
+    this.load.image('ground', 'src/assets/images/ground.png');
+    this.load.image('grass:8x1', 'src/assets/images/grass_8x1.png');
+    this.load.image('grass:6x1', 'src/assets/images/grass_6x1.png');
+    this.load.image('grass:4x1', 'src/assets/images/grass_4x1.png');
+    this.load.image('grass:2x1', 'src/assets/images/grass_2x1.png');
+    this.load.image('grass:1x1', 'src/assets/images/grass_1x1.png');
+    this.load.image('key', 'src/assets/images/key.png');
 
-    this.load.spritesheet('decoration', 'images/decor.png', {
+    this.load.spritesheet('decoration', 'src/assets/images/decor.png', {
       frameWidth: 42,
       frameHeight: 42,
     });
-    this.load.spritesheet('hero', 'images/hero.png', {
-      frameWidth: 36,
-      frameHeight: 42,
-    });
-    this.load.spritesheet('coin', 'images/coin_animated.png', {
+    this.load.spritesheet(
+      'hero',
+      'src/assets/red-hood-pixel-character/idle.png',
+      {
+        frameWidth: 80,
+        frameHeight: 80,
+      }
+    );
+    this.load.spritesheet(
+      'hero-run',
+      'src/assets/red-hood-pixel-character/run.png',
+      {
+        frameWidth: 80,
+        frameHeight: 80,
+      }
+    );
+    this.load.spritesheet(
+      'hero-jump',
+      'src/assets/red-hood-pixel-character/jump.png',
+      {
+        frameWidth: 80,
+        frameHeight: 80,
+      }
+    );
+    this.load.spritesheet('coin', 'src/assets/images/coin_animated.png', {
       frameWidth: 22,
       frameHeight: 22,
     });
-    this.load.spritesheet('spider', 'images/spider.png', {
+    this.load.spritesheet('spider', 'src/assets/images/spider.png', {
       frameWidth: 42,
       frameHeight: 32,
     });
-    this.load.spritesheet('door', 'images/door.png', {
+    this.load.spritesheet('door', 'src/assets/images/door.png', {
       frameWidth: 42,
       frameHeight: 66,
     });
-    this.load.spritesheet('icon:key', 'images/key_icon.png', {
+    this.load.spritesheet('icon:key', 'src/assets/images/key_icon.png', {
       frameWidth: 34,
       frameHeight: 30,
     });
 
-    this.load.audio('sfx:jump', 'audio/jump.wav');
-    this.load.audio('sfx:coin', 'audio/coin.wav');
-    this.load.audio('sfx:key', 'audio/key.wav');
-    this.load.audio('sfx:stomp', 'audio/stomp.wav');
-    this.load.audio('sfx:door', 'audio/door.wav');
-    this.load.audio('bgm', ['audio/bgm.mp3', 'audio/bgm.ogg']);
+    this.load.audio('sfx:jump', 'src/assets/audio/jump.wav');
+    this.load.audio('sfx:coin', 'src/assets/audio/coin.wav');
+    this.load.audio('sfx:key', 'src/assets/audio/key.wav');
+    this.load.audio('sfx:stomp', 'src/assets/audio/stomp.wav');
+    this.load.audio('sfx:door', 'src/assets/audio/door.wav');
+    this.load.audio('bgm', [
+      'src/assets/audio/bgm.mp3',
+      'src/assets/audio/bgm.ogg',
+    ]);
   }
 
   create() {

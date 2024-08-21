@@ -11,7 +11,7 @@ export var gameConfig = {
     default: 'arcade',
     arcade: {
       gravity: { y: 300 },
-      // debug: true,
+      debug: true,
     },
   },
   scene: [Boot, Play],

@@ -20,7 +20,7 @@ export class Animations {
     this.initAnimations(scene);
   }
 
-  getAnimations(key: string) {
+  getAnimations(key: 'spider' | 'hero' | 'elements') {
     return this.map[key];
   }
 
@@ -46,24 +46,39 @@ export class Animations {
 
     scene.anims.create({
       key: 'stop',
-      frames: [{ key: 'hero', frame: 0 }],
+      frames: scene.anims.generateFrameNumbers('hero', { start: 0, end: 17 }),
+      frameRate: 10,
+      repeat: -1,
     });
 
     scene.anims.create({
       key: 'run',
-      frames: scene.anims.generateFrameNumbers('hero', { start: 1, end: 2 }),
-      frameRate: 8,
+      frames: scene.anims.generateFrameNumbers('hero-run', {
+        start: 0,
+        end: 23,
+      }),
+      frameRate: 15,
       repeat: -1,
     });
 
     scene.anims.create({
       key: 'jump',
-      frames: [{ key: 'hero', frame: 3 }],
+      frames: scene.anims.generateFrameNumbers('hero-jump', {
+        start: 7,
+        end: 18,
+      }),
+      frameRate: 10,
+      repeat: 0,
     });
 
     scene.anims.create({
       key: 'fall',
-      frames: [{ key: 'hero', frame: 4 }],
+      frames: scene.anims.generateFrameNumbers('hero-jump', {
+        start: 0,
+        end: 6,
+      }),
+      frameRate: 10,
+      repeat: 0,
     });
 
     scene.anims.create({

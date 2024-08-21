@@ -9,9 +9,9 @@ const enum Directions {
 export class Spider extends Phaser.Physics.Arcade.Sprite {
   direction = Directions.right;
   dead = false;
-  animations;
+  animations: any;
 
-  constructor(scene: Play, x, y) {
+  constructor(scene: Play, x: any, y: any) {
     super(scene, x, y, 'spider');
 
     this.animations = scene.getAnimations('spider');
@@ -32,21 +32,21 @@ export class Spider extends Phaser.Physics.Arcade.Sprite {
   }
 
   live() {
-    if (this.body.touching.right || this.body.blocked.right) {
+    if (this.body?.touching.right || this.body?.blocked.right) {
       this.direction = Directions.left;
-    } else if (this.body.touching.left || this.body.blocked.left) {
+    } else if (this.body?.touching.left || this.body?.blocked.left) {
       this.direction = Directions.right;
     }
     this.crawl(this.direction);
   }
 
-  crawl(direction) {
+  crawl(direction: any) {
     const velocity = this.getVelocity(direction);
     this.setVelocityX(velocity);
     this.anims.play(this.animations.crawl, true);
   }
 
-  private getVelocity(direction) {
+  private getVelocity(direction: any) {
     return direction === Directions.left ? -SPIDER_SPEED : SPIDER_SPEED;
   }
 }

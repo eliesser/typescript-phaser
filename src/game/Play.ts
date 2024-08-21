@@ -7,22 +7,22 @@ const LEVEL_COUNT = 2;
 
 export class Play extends Phaser.Scene {
   currentLevel: integer = 1;
-  level: Level;
-  hero: Hero;
+  level!: Level;
+  hero!: Hero;
   key: any;
   door: any;
   keyIcon: any;
   coinIcon: any;
-  spiders: Spider[];
+  spiders!: Spider[];
 
-  groups: { [key: string]: Phaser.Physics.Arcade.Group };
+  groups!: { [key: string]: Phaser.Physics.Arcade.Group };
 
-  scoreText: Phaser.GameObjects.BitmapText;
+  scoreText!: Phaser.GameObjects.BitmapText;
 
   score: integer = 0;
   hasKey: boolean = false;
 
-  animations: Animations;
+  animations!: Animations;
 
   constructor() {
     super('Play');
@@ -54,7 +54,7 @@ export class Play extends Phaser.Scene {
 
     this.gotoLevel(this.currentLevel);
 
-    const props = [
+    const props: any = [
       'hero',
       'key',
       'keyIcon',
@@ -64,7 +64,7 @@ export class Play extends Phaser.Scene {
       'groups',
     ];
 
-    props.forEach((prop) => (this[prop] = this.level[prop]));
+    props.forEach((prop: any) => (this[prop] = this.level[prop]));
   }
 
   initCamera() {
@@ -81,7 +81,7 @@ export class Play extends Phaser.Scene {
       this.hero,
       this.groups.coins,
       this.collectCoin,
-      null,
+      undefined,
       this
     );
 
@@ -89,17 +89,23 @@ export class Play extends Phaser.Scene {
       this.hero,
       this.groups.spiders,
       this.doBattle,
-      null,
+      undefined,
       this
     );
 
-    this.physics.add.overlap(this.hero, this.key, this.collectKey, null, this);
+    this.physics.add.overlap(
+      this.hero,
+      this.key,
+      this.collectKey,
+      undefined,
+      this
+    );
 
     this.physics.add.overlap(
       this.hero,
       this.door,
       this.exitThroughDoor,
-      (hero, door) => this.hasKey && hero.body.touching.down,
+      (hero: any) => this.hasKey && hero.body.touching.down,
       this
     );
   }
@@ -117,7 +123,7 @@ export class Play extends Phaser.Scene {
     return this.animations.getAnimations(key);
   }
 
-  doBattle(hero, spider) {
+  doBattle(hero: any, spider: any) {
     if (spider.body.touching.up && hero.body.touching.down) {
       this.sound.play('sfx:stomp');
       spider.die();
@@ -126,18 +132,18 @@ export class Play extends Phaser.Scene {
     }
   }
 
-  exitThroughDoor(hero, door) {
+  exitThroughDoor(hero: any, door: any) {
     this.sound.play('sfx:door');
     this.gotoNextLevel();
   }
 
-  collectKey(hero, key) {
+  collectKey(hero: any, key: any) {
     key.destroy();
     this.sound.play('sfx:key');
     this.hasKey = true;
   }
 
-  collectCoin(hero, coin) {
+  collectCoin(hero: any, coin: any) {
     coin.destroy();
     this.sound.play('sfx:coin');
     this.score += 1;
@@ -155,13 +161,13 @@ export class Play extends Phaser.Scene {
       this.currentLevel < LEVEL_COUNT ? ++this.currentLevel : 1;
 
     this.cameras.main.fade(1000);
-    this.cameras.main.on('camerafadeoutcomplete', (camera, effect) => {
+    this.cameras.main.on('camerafadeoutcomplete', () => {
       this.scene.start('Play');
       this.gotoLevel(this.currentLevel);
     });
   }
 
-  gotoLevel(level) {
+  gotoLevel(level: any) {
     this.level.loadLevel(this.cache.json.get(`level:${level}`));
   }
 
@@ -169,7 +175,7 @@ export class Play extends Phaser.Scene {
     this.reset();
     this.hero.die();
     this.cameras.main.fade(1000);
-    this.cameras.main.on('camerafadeoutcomplete', (camera, effect) => {
+    this.cameras.main.on('camerafadeoutcomplete', () => {
       this.scene.restart();
     });
   }
