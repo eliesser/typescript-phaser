@@ -38,9 +38,9 @@ export class Animations {
     scene.anims.create({
       key: 'dyingEnemy',
       frames: scene.anims.generateFrameNumbers('enemy', {
-        frames: [6, 2, 2, 6, 6, 6, 2, 2, 6, 6, 6, 6],
+        frames: [6, 2, 2, 6, 6, 2, 2, 6, 6, 2, 2, 6, 6],
       }),
-      frameRate: 1,
+      frameRate: 10,
       repeat: 0,
       hideOnComplete: true,
     });

@@ -2,6 +2,11 @@ import level1 from '../data/level1.json';
 import level2 from '../data/level2.json';
 
 export class Boot extends Phaser.Scene {
+  music!:
+    | Phaser.Sound.NoAudioSound
+    | Phaser.Sound.HTML5AudioSound
+    | Phaser.Sound.WebAudioSound;
+
   constructor() {
     super('Boot');
   }
@@ -111,5 +116,7 @@ export class Boot extends Phaser.Scene {
   create() {
     console.log('Boot.create()');
     this.scene.start('Play');
+    this.music = this.sound.add('bgm');
+    // this.music.play({ loop: true });
   }
 }

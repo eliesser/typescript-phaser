@@ -1,7 +1,7 @@
 import { Play } from './play';
 
 export class Hero extends Phaser.Physics.Arcade.Sprite {
-  keys: Phaser.Input.Keyboard.CursorKeys;
+  keys!: Phaser.Types.Input.Keyboard.CursorKeys | undefined;
   animations: any;
   dead = false;
 
@@ -13,13 +13,16 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
   }
 
   update() {
-    if (this.dead) return; // Hero is dead... do nothing
+    if (this.dead) {
+      this.halt();
+      return; // Hero is dead... do nothing
+    }
 
-    if (this.keys.up.isDown && this.body?.touching.down) {
+    if (this.keys?.up.isDown && this.body?.touching.down) {
       this.jump();
-    } else if (this.keys.left.isDown) {
+    } else if (this.keys?.left.isDown) {
       this.runLeft();
-    } else if (this.keys.right.isDown) {
+    } else if (this.keys?.right.isDown) {
       this.runRight();
     } else {
       this.halt();
@@ -53,7 +56,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
   }
 
   jump() {
-    this.setVelocityY(-330);
+    this.setVelocityY(-370);
     this.scene.sound.play('sfx:jump');
   }
 
@@ -79,7 +82,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
     return name;
   }
 
-  private initKeys(scene: any) {
-    this.keys = scene.input.keyboard.createCursorKeys();
+  private initKeys(scene: Play) {
+    this.keys = scene.input.keyboard?.createCursorKeys();
   }
 }

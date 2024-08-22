@@ -5,12 +5,21 @@ import { Animations } from './animations';
 
 const LEVEL_COUNT = 2;
 
+type PropKeys =
+  | 'hero'
+  | 'key'
+  | 'keyIcon'
+  | 'coinIcon'
+  | 'door'
+  | 'enemies'
+  | 'groups';
+
 export class Play extends Phaser.Scene {
   currentLevel: integer = 1;
   level!: Level;
   hero!: Hero;
-  key: any;
-  door: any;
+  key!: Phaser.Types.Physics.Arcade.ArcadeColliderType;
+  door!: Phaser.Types.Physics.Arcade.ArcadeColliderType;
   keyIcon: any;
   coinIcon: any;
   enemies!: Enemy[];
@@ -54,7 +63,7 @@ export class Play extends Phaser.Scene {
 
     this.gotoLevel(this.currentLevel);
 
-    const props: any = [
+    const props: PropKeys[] = [
       'hero',
       'key',
       'keyIcon',
@@ -64,7 +73,9 @@ export class Play extends Phaser.Scene {
       'groups',
     ];
 
-    props.forEach((prop: any) => (this[prop] = this.level[prop]));
+    props.forEach((prop) => {
+      (this as any)[prop] = this.level[prop];
+    });
   }
 
   initCamera() {
@@ -119,17 +130,18 @@ export class Play extends Phaser.Scene {
     );
   }
 
-  getAnimations(key: string) {
+  getAnimations(key: 'enemy' | 'hero' | 'elements') {
     return this.animations.getAnimations(key);
   }
 
   doBattle(hero: any, enemy: any) {
-    if (enemy.body.touching.up && hero.body.touching.down) {
-      this.sound.play('sfx:stomp');
-      enemy.die();
-    } else {
-      this.gameOver();
-    }
+    if (!hero.dead && !enemy.dead)
+      if (enemy.body.touching.up && hero.body.touching.down) {
+        this.sound.play('sfx:stomp');
+        enemy.die();
+      } else {
+        this.gameOver();
+      }
   }
 
   exitThroughDoor(hero: any, door: any) {
@@ -178,7 +190,7 @@ export class Play extends Phaser.Scene {
       this.cameras.main.on('camerafadeoutcomplete', () => {
         this.scene.restart();
       });
+      this.reset();
     }, 1000);
-    this.reset();
   }
 }

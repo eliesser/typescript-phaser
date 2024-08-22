@@ -1,7 +1,7 @@
 import { Boot } from './boot';
 import { Play } from './play';
 
-export var gameConfig = {
+export var gameConfig: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   width: 960,
   height: 600,
@@ -10,7 +10,7 @@ export var gameConfig = {
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: { y: 300 },
+      gravity: { x: 0, y: 500 },
       debug: true,
     },
   },
